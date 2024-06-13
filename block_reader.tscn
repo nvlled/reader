@@ -1,0 +1,147 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0fvm4hqy0uf8"]
+
+[ext_resource type="Script" path="res://block_reader.gd" id="1_4ntjw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4ewe"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_bln25"]
+sky_material = SubResource("ProceduralSkyMaterial_f4ewe")
+
+[sub_resource type="Environment" id="Environment_eka17"]
+background_mode = 1
+background_color = Color(0.0108795, 0.030608, 0.09375, 1)
+sky = SubResource("Sky_bln25")
+tonemap_mode = 2
+
+[node name="BlockReader" type="Node3D"]
+script = ExtResource("1_4ntjw")
+textContent = "It’s at this young PI stage that Karikó ’s career hit a wall: after she became an Adjunct Professor, she stopped advancing further. Some of it was because of the topic she had chosen and in this regard, diversifying funding and supporting more high risk projects are very good proposals coming from the metascience community that would have helped. But some of it was probably her personality, as she says herself. I suspect selection against Weird Nerds has actually amplified since Karikó ’s time in academia: everything from ever larger collaborations in Biology, to longer times to becoming independent or increase in admin points in that direction. Indeed, as I have argued before, there is some quantitative evidence there are less Weird Nerds in STEM academia than there used to be.
+
+So far I have discussed the Hard Sciences, but there is a case to be made that the problem is much more acute in less quantifiable fields like Humanities or Social Sciences. STEM has a higher barrier to entry: there is only so much political game playing that one can do in order to advance themselves if one cannot perform experiments in a lab. It is also somewhat more clear if a scientific piece of work is completely bad. There is feedback from industry, with most start-ups in biotech these days coming out of academic labs: this provides a strong incentive for innovation. Such quality check mechanisms are on much more shaky ground in fields like Humanities, where feedback from society can happen on the order of decades. Arguably, being a Weird Nerd that is intrinsically driven by the truth as opposed to what’s fashionable is even more crucial in the absence of hard metrics that can tell one their work is wrong.
+
+But backlash from society does eventually happen, and I think we are in the middle of this right now, with trust in academia plummeting in a bipartisan fashion, as recent Gallup polls show. At least some of the current crisis is, in my opinion, down to academia essentially selecting against Weird Nerds types. A problem with non-STEM topics might sound less problematic than a replication crisis in cancer biology. I think that’s not true: after all, we depend on a collective imaginarium for a healthy society, a collective imaginarium whose pillars might be slowly crumbling."
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eka17")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="TextWhole" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16225, -0.949031, -0.471646)
+modulate = Color(0.0014709, 0.264351, 0.367188, 1)
+text = "asdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasdasdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasdasdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasdasdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasdasdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasdasdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasdasdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasd"
+font_size = 14
+outline_size = 1
+horizontal_alignment = 0
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="TextPrev" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12536, 0.596, -0.303)
+modulate = Color(0.347656, 0.347656, 0.347656, 1)
+text = " a piece called “The flight of the Weird Nerd from academia”,"
+horizontal_alignment = 2
+
+[node name="TextCurrent" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.303)
+text = " a piece called “The flight of the Weird Nerd from academia”,"
+font_size = 35
+autowrap_mode = 3
+width = 480.0
+
+[node name="TextNext" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32852, -0.507776, 0)
+visible = false
+modulate = Color(0.4375, 0.4375, 0.4375, 1)
+text = "asdfasdfasdfasdfasdfas fasdf asdf asdfasdf asdf asdf asdf asdf asdf asdf asd fasd"
+font_size = 16
+horizontal_alignment = 2
+vertical_alignment = 0
+autowrap_mode = 2
+
+[node name="LinesContainer" type="Node3D" parent="."]
+visible = false
+
+[node name="InputTextContainer" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="InputTextContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InputTextContainer/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit" type="TextEdit" parent="InputTextContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+wrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InputTextContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="AutoPasteCheckbox" type="CheckBox" parent="InputTextContainer/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "auto-paste clipboard"
+
+[node name="CancelButton" type="Button" parent="InputTextContainer/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[node name="EnterButton" type="Button" parent="InputTextContainer/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enter"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowInputButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "*"
+flat = true
+
+[connection signal="pressed" from="InputTextContainer/Panel/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="InputTextContainer/Panel/VBoxContainer/HBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ShowInputButton" to="." method="_on_show_input_button_pressed"]

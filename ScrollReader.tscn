@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://b816p3emvk6st"]
+
+[ext_resource type="Script" path="res://ScrollReader.gd" id="1_o1rox"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_46m20"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tvd7o"]
+sky_material = SubResource("ProceduralSkyMaterial_46m20")
+
+[sub_resource type="Environment" id="Environment_2t362"]
+background_mode = 1
+background_color = Color(0.0108795, 0.030608, 0.09375, 1)
+sky = SubResource("Sky_tvd7o")
+tonemap_mode = 2
+
+[node name="ScrollReader" type="Node3D"]
+script = ExtResource("1_o1rox")
+textContent = "It must have been late in the afternoon one day at the end of August when Moomintroll and his mother arrived at the deepest part of the great forest. It was completely quiet, and so dim between the trees that it was as though twilight had already fallen. Here and there giant flowers grew, glowing with a peculiar light like flickering lamps, and furthest in among the shadows moved tiny dots of cold green. 
+“Glow-worms,” said Moominmamma, but they had no time to stop and take a closer look at them. They were out searching for a snug, warm place where they could build a house to crawl into when winter came. Moomins cannot stand the cold at all, so the house would have to be ready by October at the latest.
+So they walked on, further and further into the silence and the darkness. Little by little, Moomintroll began to feel anxious, and he asked his mother in a whisper if she thought there were any dangerous creatures in there. “I shouldn’t think so,” she said, “though perhaps we’d better go a little faster anyway. But I hope we’re so small that we won’t be noticed if something dangerous should come along.”"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2t362")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.55733)
+
+[node name="Label3D" type="Label3D" parent="."]
+visible = false
+modulate = Color(1, 0.126153, 0.0514647, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "var current_line: string
+"
+horizontal_alignment = 0
+line_spacing = 3.11
+width = 534.975
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.140706, 0)
+visible = false
+modulate = Color(0, 0.21204, 1, 1)
+text = "var current_line: string
+"
+horizontal_alignment = 0
+line_spacing = 3.11
+width = 534.975
+
+[node name="LinesContainer" type="Node3D" parent="."]
