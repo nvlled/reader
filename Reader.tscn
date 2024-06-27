@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://2x7gx74t6de3"]
+
+[ext_resource type="Script" path="res://Reader.cs" id="1_4763p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_768y1"]
+font_size = 50
+font_color = Color(0, 0.260593, 0.480469, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x72a5"]
+font_size = 50
+font_color = Color(0.273438, 0.0351906, 0, 1)
+
+[node name="Reader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4763p")
+batchSize = 50
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.126422, 0.230469, 1)
+
+[node name="InactiveTextPreview" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -161.0
+offset_top = 207.0
+offset_right = 139.0
+offset_bottom = 276.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "inactive text"
+label_settings = SubResource("LabelSettings_768y1")
+
+[node name="TextSizeCompute" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_x72a5")
+
+[node name="AutoPasteTimer" type="Timer" parent="."]
+wait_time = 0.408
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -34.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextDisplay" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "some text [color=red]here[/color]"
+fit_content = true
+autowrap_mode = 2
+tab_size = 2

@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="reader"
-run/main_scene="res://block_reader.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+run/main_scene="res://Reader.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+run/max_fps=30
+run/low_processor_mode=true
 config/icon="res://icon.svg"
 
 [audio]
@@ -23,11 +25,20 @@ general/text_to_speech=true
 
 window/size/viewport_width=800
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="reader"
+
+[input]
+
+show_text={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [rendering]
 
