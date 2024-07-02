@@ -1,9 +1,11 @@
-# What
+# reader
 
 This is program to assist or improve reading
 experience by reducing eye movement. This
 is done by showing chunks of words one
 at a time, with large text size.
+
+https://github.com/nvlled/reader/assets/916556/05ad322d-29fc-4c7b-9b87-3e639c6534e3
 
 This is very much a work-in-progress project.
 Currently, the program works by reading the
