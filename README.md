@@ -42,9 +42,9 @@ TODO: upload binary blobs
 
 # Keyboard controls
 
-<space> or <enter> or <right> - move forward to next part
-<backsppace> or <left> - move backward to previous part
-<pageup> - move ten steps backward
-<pagedown> - move ten steps forward
-<home> - move at the start
-<end> - move at the end
+- _space_ or _enter_ or _right_ - move forward to next part
+- _backsppace_ or _left_ - move backward to previous part
+- _pageup_ - move ten steps backward
+- _pagedown_ - move ten steps forward
+- _home_ - move at the start
+- _end_ - move at the end
