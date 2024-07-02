@@ -3,10 +3,14 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using godot_getnode;
+
+
+public record Phrase(string Text, int WordIndex);
 
 public partial class Reader : Control
 {
@@ -25,13 +29,22 @@ public partial class Reader : Control
     [GetNode] Label InactiveTextPreview;
     [GetNode] Label TextSizeCompute;
     [GetNode] Timer AutoPasteTimer;
+    [GetNode] ColorRect Background;
+    [GetNode(Unique: true)] Button ButtonStart;
+    [GetNode(Unique: true)] Button ButtonPrev;
+    [GetNode(Unique: true)] Label ProgressText;
+    [GetNode(Unique: true)] Button ButtonNext;
+    [GetNode(Unique: true)] Button ButtonEnd;
+    [GetNode(Unique: true)] Label WholeText;
+    [GetNode(Unique: true)] ScrollContainer ScrollContainer;
 
-    string[] textSections;
+    Phrase[] textSections;
     int index;
     Color inactiveTextColor;
 
+    readonly int pageSize = 10;
 
-    // TODO: progress 1/10
+
     // TODO: paste history
 
 
@@ -42,6 +55,8 @@ public partial class Reader : Control
         AutoPasteTimer.Timeout += CheckClipboard;
 
         inactiveTextColor = InactiveTextPreview.LabelSettings.FontColor;
+        inactiveTextColor = inactiveTextColor.Lerp(Background.Color, 0.6f);
+
         InactiveTextPreview.Visible = false;
 
         var sample = @"
@@ -49,6 +64,11 @@ Press <ctrl+v> to paste text to read.
 Press ? to see controls.".Trim();
 
         SetText(sample);
+
+        ButtonStart.Pressed += GoToStart;
+        ButtonPrev.Pressed += () => Back();
+        ButtonNext.Pressed += () => Forward();
+        ButtonEnd.Pressed += GoToEnd;
     }
 
     /*
@@ -69,36 +89,43 @@ Press ? to see controls.".Trim();
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("ui_left") || Input.IsActionJustPressed("ui_text_backspace"))
+        var isActionForward = Input.IsActionJustPressed("ui_right") || Input.IsActionJustPressed("ui_accept");
+        var isActionBack = Input.IsActionJustPressed("ui_left") || Input.IsActionJustPressed("ui_text_backspace");
+        if (Input.IsActionJustPressed("ui_page_up") || (Input.IsKeyLabelPressed(Key.Shift) && isActionBack))
         {
-            ResetInactiveColor();
+            Back(pageSize);
+        }
+        else if (Input.IsActionJustPressed("ui_page_down") || (Input.IsKeyLabelPressed(Key.Shift) && isActionForward))
+        {
+            Forward(pageSize);
+        }
+        else if (isActionBack)
+        {
             Back();
         }
-        else if (Input.IsActionJustPressed("ui_right") || Input.IsActionJustPressed("ui_accept"))
+        else if (isActionForward)
         {
-            ResetInactiveColor();
             Forward();
         }
         else if (Input.IsActionJustPressed("ui_home"))
         {
-            ResetInactiveColor();
-            index = 0;
-            UpdateDisplay();
+            GoToStart();
         }
         else if (Input.IsActionJustPressed("ui_end"))
         {
-            ResetInactiveColor();
-            index = textSections.Length - 1;
-            UpdateDisplay();
+            GoToEnd();
         }
-        else if (Input.IsActionJustPressed("show_text") || Input.IsActionJustPressed("ui_up"))
+        else if (Input.IsActionJustPressed("ui_up"))
         {
-            ResetInactiveColor();
-            UpdateDisplay();
+            if (inactiveTextColor.Luminance < 0.6)
+            {
+                inactiveTextColor = inactiveTextColor.Lerp(Colors.SkyBlue, 0.2f);
+                UpdateDisplay();
+            }
         }
-        else if (Input.IsActionJustPressed("show_text") || Input.IsActionJustPressed("ui_down"))
+        else if (Input.IsActionJustPressed("ui_down"))
         {
-            inactiveTextColor = inactiveTextColor.Lightened(0.4f);
+            inactiveTextColor = inactiveTextColor.Lerp(Background.Color, 0.2f);
             UpdateDisplay();
         }
         else if (Input.IsActionJustPressed("ui_paste"))
@@ -135,58 +162,66 @@ Press ? to see controls.".Trim();
 
     public void SetText(string text)
     {
-        textSections = SplitText(text, batchSize);
+        textSections = SplitTextByWords(text, 7);
+
+        WholeText.Text = text;
+
         GD.PrintT("sections", textSections);
         index = 0;
         UpdateDisplay();
     }
 
-    public void Forward()
+    public void Forward(int step = 1)
     {
         if (index < textSections.Length - 1)
         {
-            index++;
+            index = Math.Min(index + step, textSections.Length - 1);
             UpdateDisplay();
         }
     }
 
-    public void Back()
+    public void Back(int step = 1)
     {
         if (index > 0)
         {
-            index--;
+            index = Math.Max(index - step, 0);
             UpdateDisplay();
         }
     }
+
+    public void GoToStart()
+    {
+        index = 0;
+        UpdateDisplay();
+    }
+    public void GoToEnd()
+    {
+        index = textSections.Length - 1;
+        UpdateDisplay();
+    }
+
 
     void UpdateDisplay()
     {
         TextDisplay.Text = "";
         TextDisplay.Clear();
 
-        TextDisplay.PushParagraph(HorizontalAlignment.Center);
+        //TextDisplay.PushParagraph(HorizontalAlignment.Center);
+        //TextDisplay.PushMono();
 
-        var prevWord = "";
         if (index > 0)
         {
+            var phrase = textSections[index - 1];
+            var words = Spaces().Split(phrase.Text);
             TextDisplay.PushColor(inactiveTextColor);
-            var text = textSections[index - 1];
-
-            var (prefix, suffix) = TrimLastWord(text);
-            if (suffix.Trim().Length <= 2)
-            {
-                text = prefix;
-                prevWord = suffix;
-            }
-
-            TextDisplay.AppendText(SubstrEnd(text, batchSize / 3));
+            TextDisplay.AppendText(string.Join(' ', words[^Math.Min(words.Length, 3)..^0]));
+            TextDisplay.AppendText("\n");
             TextDisplay.Pop();
         }
 
         if (index >= 0 && index < textSections.Length)
         {
-            //TextDisplay.PushColor(Colors.White);
-            var text = textSections[index];
+            var text = textSections[index].Text;
             text = MyRegex1().Replace(text, m =>
             {
                 if (m.Value.Trim() == "")
@@ -195,16 +230,26 @@ Press ? to see controls.".Trim();
                 }
                 return $"[color=red]{m.Value}[/color]";
             });
-            TextDisplay.AppendText(prevWord + text);
+            TextDisplay.AppendText(text);
         }
 
         if (index < textSections.Length - 1)
         {
+            var phrase = textSections[index + 1];
+            var words = Spaces().Split(phrase.Text);
             TextDisplay.PushColor(inactiveTextColor);
-            var text = textSections[index + 1];
-            TextDisplay.AppendText(SubstrStart(text, batchSize / 3));
+            TextDisplay.AppendText(" ");
+            TextDisplay.AppendText(string.Join(' ', words[0..Math.Min(words.Length, 3)]));
             TextDisplay.Pop();
         }
+
+        ProgressText.Text = $"{index + 1}/{textSections.Length}";
+
+        Callable.From(() =>
+        {
+            GD.PrintT("Update scroll", WholeText.Size.Y, ScrollContainer.Size.Y);
+            ScrollContainer.ScrollVertical = (int)((float)index / textSections.Length * WholeText.Size.Y) - (int)ScrollContainer.Size.Y / 2;
+        }).CallDeferred();
     }
 
     public (string, string) TrimLastWord(string text)
@@ -239,114 +284,50 @@ Press ? to see controls.".Trim();
         return result.ToArray();
     }
 
-    public string[] SplitText(string text, int size)
+    public Phrase[] SplitTextByWords(string text, int wordsPerBatch)
     {
-        var result = new List<string>();
-        var blocks = SplitTextByBlocks(text);
-        foreach (var para in blocks)
+        text = text.Replace("\n", "↲ ");
+        var words = Spaces().Split(text);
+        GD.PrintT(words.Length, words);
+        var result = new List<Phrase>();
+        for (var i = 0; i < words.Length;)
         {
-            // 100 characters here is based on the viewport size of roughly 800x600
-            // Ideally, this would be computed or derived automatically,
-            // but I have no idea how to easily compute text sizes in godot (for now).
-            if (para.Length < 100)
+            int j;
+            var sumLen = 0;
+            for (j = i; j < words.Length; j++)
             {
-                result.Add(symbolizeNewlines ? para.Replace('\n', '↲') : para);
-                continue;
+                var n = j - i;
+                var word = words[j];
+                if (word.Length == 0) continue;
+
+                sumLen += word.Length;
+
+                GD.PrintT(word.Length, "word", word);
+                if (n >= wordsPerBatch * 3 / 4 && (char.IsPunctuation(word[^1]) || word[^1] == '↲'))
+                    break;
+                if (n >= wordsPerBatch)
+                    break;
+                if (sumLen >= wordsPerBatch * 4.2)
+                    break;
+            }
+            j++;
+
+            var chunk = string.Join(' ', words[i..Math.Min(j, words.Length)]).Trim();
+            if (chunk != "")
+            {
+                result.Add(new Phrase(chunk, j));
             }
 
-            for (var i = 0; i < para.Length;)
-            {
-                var j = Math.Min(i + size, para.Length - 1);
-                var endIndex = j;
-                for (; j > i; j--)
-                {
-                    var ch = para[j];
-                    if (char.IsControl(ch) || char.IsWhiteSpace(ch))
-                    {
-                        break;
-                    }
-                }
-
-                string sub;
-                if (j <= i || j - i < size / 2)
-                {
-                    sub = para.Substr(i, endIndex + 1);
-                }
-                else
-                {
-                    sub = para.Substr(i, j - i + 1);
-                }
-
-                if (symbolizeNewlines) sub = sub.Replace('\n', '↲');
-
-                result.Add(sub);
-                i = j + 1;
-            }
+            i = j;
         }
+
+        foreach (var chunk in result)
+        {
+            GD.PrintT(chunk.Text.Length, "chunk>", chunk.Text);
+        }
+
 
         return result.ToArray();
-    }
-
-    string SubstrEnd(string text, int size)
-    {
-        if (text.Length <= size)
-        {
-            return text;
-        }
-
-        var endSpace = char.IsWhiteSpace(text[^1]) ? text[^1].ToString() : "";
-        text = text.TrimEnd();
-
-        var len = text.Length;
-        for (var i = 0; i < len - size; i++)
-        {
-            var j = Math.Max(len - size - i, 0);
-            var ch = text[j];
-            if (IsWhiteSpace(ch))
-            {
-                return text.Substr(j, len) + endSpace;
-            }
-
-            j = Math.Min(len - size + i, len);
-            ch = text[j];
-            if (IsWhiteSpace(ch))
-            {
-                return text.Substr(j, len) + endSpace;
-            }
-        }
-
-        return text.Substr(len - size, len) + endSpace;
-    }
-
-    string SubstrStart(string text, int size)
-    {
-        if (text.Length <= size)
-        {
-            return text;
-        }
-
-        var startSpace = char.IsWhiteSpace(text[0]) ? text[0].ToString() : "";
-        text = text.TrimEnd();
-
-        var len = text.Length;
-        for (var i = 0; i < len - size; i++)
-        {
-            var j = Math.Max(size - i, 0);
-            var ch = text[j];
-            if (IsWhiteSpace(ch))
-            {
-                return startSpace + text.Substr(0, j);
-            }
-
-            j = Math.Min(size + i, len);
-            ch = text[j];
-            if (IsWhiteSpace(ch))
-            {
-                return startSpace + text.Substr(0, j);
-            }
-        }
-
-        return startSpace + text.Substr(len - size, len);
     }
 
     bool IsWhiteSpace(char ch) { return char.IsWhiteSpace(ch) || char.IsControl(ch); }
@@ -355,4 +336,6 @@ Press ? to see controls.".Trim();
     private static partial Regex MyRegex();
     [GeneratedRegex("\\W+")]
     private static partial Regex MyRegex1();
+    [GeneratedRegex("\\s+")]
+    private static partial Regex Spaces();
 }
