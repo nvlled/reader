@@ -121,13 +121,13 @@ Press ? to see controls.".Trim();
 
     public override void _Process(double delta)
     {
-        var isActionForward = Input.IsActionJustPressed("ui_right") || Input.IsActionJustPressed("ui_accept");
-        var isActionBack = Input.IsActionJustPressed("ui_left") || Input.IsActionJustPressed("ui_text_backspace");
-        if (Input.IsActionJustPressed("ui_page_up") || (Input.IsKeyLabelPressed(Key.Shift) && isActionBack))
+        var isActionForward = Input.IsActionJustPressed(InputNames.Right) || Input.IsActionJustPressed(InputNames.Accept);
+        var isActionBack = Input.IsActionJustPressed(InputNames.Left) || Input.IsActionJustPressed(InputNames.Backspace);
+        if (Input.IsActionJustPressed(InputNames.PageUp) || (Input.IsKeyLabelPressed(Key.Shift) && isActionBack))
         {
             Back(pageSize);
         }
-        else if (Input.IsActionJustPressed("ui_page_down") || (Input.IsKeyLabelPressed(Key.Shift) && isActionForward))
+        else if (Input.IsActionJustPressed(InputNames.PageDown) || (Input.IsKeyLabelPressed(Key.Shift) && isActionForward))
         {
             Forward(pageSize);
         }
@@ -139,15 +139,15 @@ Press ? to see controls.".Trim();
         {
             Forward();
         }
-        else if (Input.IsActionJustPressed("ui_home"))
+        else if (Input.IsActionJustPressed(InputNames.Home))
         {
             GoToStart();
         }
-        else if (Input.IsActionJustPressed("ui_end"))
+        else if (Input.IsActionJustPressed(InputNames.End))
         {
             GoToEnd();
         }
-        else if (Input.IsActionJustPressed("ui_up"))
+        else if (Input.IsActionJustPressed(InputNames.Up))
         {
             if (inactiveTextColor.Luminance < 0.6)
             {
@@ -155,12 +155,12 @@ Press ? to see controls.".Trim();
                 UpdateDisplay();
             }
         }
-        else if (Input.IsActionJustPressed("ui_down"))
+        else if (Input.IsActionJustPressed(InputNames.Down))
         {
             inactiveTextColor = inactiveTextColor.Lerp(Background.Color, 0.2f);
             UpdateDisplay();
         }
-        else if (Input.IsActionJustPressed("ui_paste"))
+        else if (Input.IsActionJustPressed(InputNames.Paste))
         {
             var text = DisplayServer.ClipboardGet();
             SetText(text);
