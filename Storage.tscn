@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://71octy5168gs"]
+
+[ext_resource type="Script" path="res://Storage.cs" id="1_diuav"]
+[ext_resource type="PackedScene" uid="uid://dqu72ky85ag3" path="res://StorageItem.tscn" id="1_k8bdw"]
+[ext_resource type="PackedScene" uid="uid://dmsx00m4ws2fn" path="res://ErrorMessage.tscn" id="3_ayfl5"]
+
+[node name="Storage" type="Control"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_diuav")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+tab_alignment = 1
+
+[node name="ClipboardHistory" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StorageItem" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer/TabContainer/ClipboardHistory" instance=ExtResource("1_k8bdw")]
+layout_mode = 2
+
+[node name="StorageItem2" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer/TabContainer/ClipboardHistory" instance=ExtResource("1_k8bdw")]
+layout_mode = 2
+
+[node name="Saved" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="StorageItem" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer/TabContainer/Saved" instance=ExtResource("1_k8bdw")]
+layout_mode = 2
+
+[node name="StorageItem2" parent="MarginContainer/HBoxContainer/ScrollContainer/VBoxContainer/TabContainer/Saved" instance=ExtResource("1_k8bdw")]
+layout_mode = 2
+
+[node name="ErrorMessage" parent="." instance=ExtResource("3_ayfl5")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = -400.0
+offset_top = -140.0
+offset_right = 0.0
+offset_bottom = 0.0

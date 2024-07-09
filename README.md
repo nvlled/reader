@@ -22,7 +22,7 @@ although it might be too particular for
 my preference and reading style.
 
 The primary goal is reading comfort
-for long reading sessions. Secondary
+for long or large blocks of text. Secondary
 (and optional) goal is to improve reading speed.
 
 # Download and setup
@@ -30,7 +30,7 @@ for long reading sessions. Secondary
 1. Install godot4.2 (dotnet version)
 2. Download project
 3. Open project with godot
-4. Run with <F5>
+4. Run with _F5_
 
 TODO: upload binary blobs
 

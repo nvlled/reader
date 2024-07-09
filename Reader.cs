@@ -37,6 +37,8 @@ public partial class Reader : Control
     [GetNode(Unique: true)] Button ButtonEnd;
     [GetNode(Unique: true)] Label WholeText;
     [GetNode(Unique: true)] ScrollContainer ScrollContainer;
+    [GetNode] StorageWindow StorageWindow;
+    [GetNode(Unique: true)] TextureButton ShowHistoryButton;
 
     Phrase[] textSections;
     int index;
@@ -44,13 +46,32 @@ public partial class Reader : Control
 
     readonly int pageSize = 10;
 
-
-    // TODO: paste history
-
+    Storage Storage;
 
     public override void _Ready()
     {
         GetNodeAttribute.Ready(this);
+
+        ShowHistoryButton.Pressed += () => StorageWindow.Visible = true;
+
+        StorageWindow.CloseRequested += () =>
+        {
+            StorageWindow.Visible = false;
+        };
+
+        Storage = StorageWindow.Storage;
+        Storage.Opened += OnOpenText;
+        lastClipboard = Storage.LastClipboard;
+
+        if (lastClipboard == "")
+        {
+
+            lastClipboard = @"
+Press <ctrl+v> to paste text to read.
+Press ? to see controls.".Trim();
+        }
+
+        SetText(lastClipboard);
 
         AutoPasteTimer.Timeout += CheckClipboard;
 
@@ -59,16 +80,27 @@ public partial class Reader : Control
 
         InactiveTextPreview.Visible = false;
 
-        var sample = @"
-Press <ctrl+v> to paste text to read.
-Press ? to see controls.".Trim();
-
-        SetText(sample);
-
         ButtonStart.Pressed += GoToStart;
         ButtonPrev.Pressed += () => Back();
         ButtonNext.Pressed += () => Forward();
         ButtonEnd.Pressed += GoToEnd;
+
+        /*
+        var storage = GetNode<Storage>("Storage");
+        var window = GetNode<Window>("Window");
+        RemoveChild(storage);
+        //window.Size = window.Size with { X = 500, Y = 200 };
+        window.Visible = true;
+        window.AddChild(storage);
+        window.Popup();
+        storage.Visible = true;
+        window.ChildControlsChanged();
+        */
+    }
+
+    private void OnOpenText(string contents)
+    {
+        SetText(contents);
     }
 
     /*
@@ -151,6 +183,7 @@ Press ? to see controls.".Trim();
             }
         }
 
+        Storage.AddClipboardEntry(text);
         lastClipboard = text;
         SetText(text);
     }
@@ -166,7 +199,6 @@ Press ? to see controls.".Trim();
 
         WholeText.Text = text;
 
-        GD.PrintT("sections", textSections);
         index = 0;
         UpdateDisplay();
     }
@@ -199,7 +231,6 @@ Press ? to see controls.".Trim();
         index = textSections.Length - 1;
         UpdateDisplay();
     }
-
 
     void UpdateDisplay()
     {
@@ -247,7 +278,6 @@ Press ? to see controls.".Trim();
 
         Callable.From(() =>
         {
-            GD.PrintT("Update scroll", WholeText.Size.Y, ScrollContainer.Size.Y);
             ScrollContainer.ScrollVertical = (int)((float)index / textSections.Length * WholeText.Size.Y) - (int)ScrollContainer.Size.Y / 2;
         }).CallDeferred();
     }
@@ -288,7 +318,6 @@ Press ? to see controls.".Trim();
     {
         text = text.Replace("\n", "↲ ");
         var words = Spaces().Split(text);
-        GD.PrintT(words.Length, words);
         var result = new List<Phrase>();
         for (var i = 0; i < words.Length;)
         {
@@ -302,7 +331,6 @@ Press ? to see controls.".Trim();
 
                 sumLen += word.Length;
 
-                GD.PrintT(word.Length, "word", word);
                 if (n >= wordsPerBatch * 3 / 4 && (char.IsPunctuation(word[^1]) || word[^1] == '↲'))
                     break;
                 if (n >= wordsPerBatch)
@@ -321,10 +349,10 @@ Press ? to see controls.".Trim();
             i = j;
         }
 
-        foreach (var chunk in result)
-        {
-            GD.PrintT(chunk.Text.Length, "chunk>", chunk.Text);
-        }
+        //foreach (var chunk in result)
+        //{
+        //    GD.PrintT(chunk.Text.Length, "chunk>", chunk.Text);
+        //}
 
 
         return result.ToArray();

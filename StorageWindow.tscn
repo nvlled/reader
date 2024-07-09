@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgyu5ktewoy6x"]
+
+[ext_resource type="PackedScene" uid="uid://71octy5168gs" path="res://Storage.tscn" id="1_1il1i"]
+[ext_resource type="Script" path="res://StorageWindow.cs" id="1_37td3"]
+
+[node name="StorageWindow" type="Window"]
+initial_position = 1
+size = Vector2i(640, 499)
+wrap_controls = true
+transient = true
+min_size = Vector2i(640, 0)
+script = ExtResource("1_37td3")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.126422, 0.230469, 1)
+
+[node name="Storage" parent="." instance=ExtResource("1_1il1i")]
+custom_minimum_size = Vector2(0, 0)

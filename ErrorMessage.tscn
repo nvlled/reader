@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmsx00m4ws2fn"]
+
+[ext_resource type="Script" path="res://ErrorMessage.cs" id="1_v7hcv"]
+
+[node name="ErrorMessage" type="PanelContainer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -800.0
+offset_top = -648.0
+offset_right = -400.0
+offset_bottom = -366.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_v7hcv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Message" type="Label" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "error message here"
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "close"

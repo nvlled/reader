@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://2x7gx74t6de3"]
+[gd_scene load_steps=9 format=3 uid="uid://2x7gx74t6de3"]
 
 [ext_resource type="Script" path="res://Reader.cs" id="1_4763p"]
-[ext_resource type="FontFile" uid="uid://b7qcb68dsssv3" path="res://RobotoMono-Regular.ttf" id="2_e8ar2"]
+[ext_resource type="FontFile" uid="uid://b7qcb68dsssv3" path="res://Assets/RobotoMono-Regular.ttf" id="2_e8ar2"]
+[ext_resource type="Texture2D" uid="uid://wx2uevh3x45r" path="res://Assets/paste-svgrepo-com.png" id="3_j2ldm"]
+[ext_resource type="PackedScene" uid="uid://bgyu5ktewoy6x" path="res://StorageWindow.tscn" id="3_s4j5f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yb626"]
 font_color = Color(0, 0.257136, 0.292969, 1)
@@ -57,7 +59,7 @@ theme_override_constants/margin_bottom = 50
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-scroll_vertical = 4941
+scroll_vertical = 100
 vertical_scroll_mode = 3
 
 [node name="WholeText" type="Label" parent="MarginContainer2/ScrollContainer"]
@@ -225,3 +227,24 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 focus_mode = 0
 text = "⇥"
+
+[node name="ShowHistoryButton" type="TextureButton" parent="Interface"]
+unique_name_in_owner = true
+modulate = Color(0.863431, 1, 0.78676, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -37.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_j2ldm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StorageWindow" parent="." instance=ExtResource("3_s4j5f")]
+visible = false

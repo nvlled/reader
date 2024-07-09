@@ -24,6 +24,7 @@ general/text_to_speech=true
 [display]
 
 window/size/viewport_width=800
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
