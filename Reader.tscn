@@ -1,10 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqiv418jw7okk"]
+[gd_scene load_steps=15 format=3 uid="uid://dqiv418jw7okk"]
 
 [ext_resource type="Script" uid="uid://dv4tbnaopykgj" path="res://Reader.cs" id="1_4763p"]
 [ext_resource type="FontFile" uid="uid://b7qcb68dsssv3" path="res://Assets/RobotoMono-Regular.ttf" id="2_e8ar2"]
 [ext_resource type="PackedScene" uid="uid://bk2ho6t127k07" path="res://TokenizedRichTextLabel.tscn" id="2_vdw02"]
 
 [sub_resource type="Theme" id="Theme_u1j45"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_f5pvi"]
+device = -1
+keycode = 4194335
+
+[sub_resource type="Shortcut" id="Shortcut_1arte"]
+events = [SubResource("InputEventKey_f5pvi")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vdw02"]
+device = -1
+keycode = 4194338
+
+[sub_resource type="Shortcut" id="Shortcut_hm6yi"]
+events = [SubResource("InputEventKey_vdw02")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nboao"]
+device = -1
+keycode = 4194336
+
+[sub_resource type="Shortcut" id="Shortcut_j12fg"]
+events = [SubResource("InputEventKey_nboao")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hm6yi"]
+device = -1
+keycode = 4194332
+
+[sub_resource type="Shortcut" id="Shortcut_nboao"]
+events = [SubResource("InputEventKey_hm6yi")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_j12fg"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_f5pvi"]
+events = [SubResource("InputEventKey_j12fg")]
 
 [node name="Reader" type="Control"]
 layout_mode = 3
@@ -17,7 +52,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("Theme_u1j45")
 script = ExtResource("1_4763p")
-metadata/_edit_lock_ = true
 metadata/_edit_horizontal_guides_ = [-88.0]
 
 [node name="Background" type="ColorRect" parent="."]
@@ -29,6 +63,57 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.126422, 0.230469, 1)
 metadata/_edit_lock_ = true
+
+[node name="TopBar" type="FlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109
+anchor_top = 0.014
+anchor_right = 0.986
+anchor_bottom = 0.014
+offset_left = 0.239998
+offset_top = 0.2
+offset_right = -0.0400391
+offset_bottom = 35.2
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="JoinLinesButton" type="Button" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Join lines"
+shortcut = SubResource("Shortcut_1arte")
+text = "⥱"
+
+[node name="AutoPasteToggle" type="CheckButton" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Toggle auto-paste"
+focus_mode = 0
+shortcut = SubResource("Shortcut_hm6yi")
+text = "auto
+"
+alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="PasteButton" type="Button" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Paste text from clipboard"
+focus_mode = 0
+shortcut = SubResource("Shortcut_j12fg")
+text = "paste"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowHelpButton" type="Button" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Show help text"
+focus_mode = 0
+shortcut = SubResource("Shortcut_nboao")
+text = " ? "
+metadata/_edit_use_anchors_ = true
 
 [node name="Editor" parent="." instance=ExtResource("2_vdw02")]
 unique_name_in_owner = true
@@ -74,38 +159,6 @@ ShowWhiteSpaces = false
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="PasteButton" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.8425
-anchor_top = 0.036716
-anchor_right = 0.8825
-anchor_bottom = 0.036716
-offset_left = -51.0
-offset_top = 0.208
-offset_bottom = 31.208
-focus_mode = 0
-text = "paste (F5)"
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
-
-[node name="ShowHelpButton" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.995
-anchor_top = 0.036716
-anchor_right = 0.97
-anchor_bottom = 0.036716
-offset_left = -51.0
-offset_top = 0.208
-offset_bottom = 31.208
-focus_mode = 0
-text = "?"
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
-
 [node name="HelpPanel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -132,6 +185,7 @@ offset_left = -24.0
 offset_right = 24.0
 offset_bottom = 31.0
 grow_horizontal = 2
+shortcut = SubResource("Shortcut_f5pvi")
 text = "close
 "
 
@@ -160,5 +214,5 @@ text = "[b]Controls:[/b]
  Press spacebar to move to next
 [/ol]
 
-[i]Tip: If the the lines are too long, adjust the window size.[/i]"
+[i]Tip: If the the lines are too long and look broken, adjust the window size, or press the join-lines button.[/i]"
 metadata/_edit_lock_ = true
