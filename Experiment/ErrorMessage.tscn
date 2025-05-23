@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmsx00m4ws2fn"]
 
-[ext_resource type="Script" path="res://ErrorMessage.cs" id="1_v7hcv"]
+[ext_resource type="Script" uid="uid://dw2ue2fyk3yyw" path="res://Experiment/ErrorMessage.cs" id="1_v7hcv"]
 
 [node name="ErrorMessage" type="PanelContainer"]
 anchors_preset = 3

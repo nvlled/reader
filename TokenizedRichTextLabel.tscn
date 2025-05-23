@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk2ho6t127k07"]
+
+[ext_resource type="Script" uid="uid://cmkf6ldjcrnep" path="res://TokenizedRichTextLabel.cs" id="1_aa1fe"]
+
+[node name="TokenizedRichTextLabel" type="RichTextLabel"]
+offset_right = 1.0
+bbcode_enabled = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("1_aa1fe")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://71octy5168gs"]
 
-[ext_resource type="Script" path="res://Storage.cs" id="1_diuav"]
-[ext_resource type="PackedScene" uid="uid://dqu72ky85ag3" path="res://StorageItem.tscn" id="1_k8bdw"]
-[ext_resource type="PackedScene" uid="uid://dmsx00m4ws2fn" path="res://ErrorMessage.tscn" id="3_ayfl5"]
+[ext_resource type="Script" uid="uid://dtvandrakjrc1" path="res://Experiment/Storage.cs" id="1_diuav"]
+[ext_resource type="PackedScene" uid="uid://dqu72ky85ag3" path="res://Experiment/StorageItem.tscn" id="1_k8bdw"]
+[ext_resource type="PackedScene" uid="uid://dmsx00m4ws2fn" path="res://Experiment/ErrorMessage.tscn" id="3_ayfl5"]
 
 [node name="Storage" type="Control"]
 custom_minimum_size = Vector2(600, 400)

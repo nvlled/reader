@@ -1,11 +1,11 @@
 # reader
 
+![](Assets/screenshot.png)
+
 This is program to assist or improve reading
 experience by reducing eye movement. This
 is done by showing chunks of words one
-at a time, with large text size.
-
-https://github.com/nvlled/reader/assets/916556/05ad322d-29fc-4c7b-9b87-3e639c6534e3
+at a time, with a large text size.
 
 This is very much a work-in-progress project.
 Currently, the program works by reading the
@@ -27,24 +27,8 @@ for long or large blocks of text. Secondary
 
 # Download and setup
 
-1. Install godot4.2 (dotnet version)
+1. Install godot (dotnet version)
 2. Download project
 3. Open project with godot
 4. Run with _F5_
 
-TODO: upload binary blobs
-
-# Usage
-
-1. Open the program
-2. Select and copy a text to read
-3. The program will automatically show the copied text
-
-# Keyboard controls
-
-- _space_ or _enter_ or _right_ - move forward to next part
-- _backsppace_ or _left_ - move backward to previous part
-- _pageup_ - move ten steps backward
-- _pagedown_ - move ten steps forward
-- _home_ - move at the start
-- _end_ - move at the end

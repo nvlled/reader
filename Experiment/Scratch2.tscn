@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2ihhyryc4k0r"]
+
+[ext_resource type="Script" uid="uid://73if7l5ybnl7" path="res://Experiment/scratch_2.gd" id="1_swg8x"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_phgsi"]
+sky_top_color = Color(1.58831e-06, 0.524311, 0.43923, 1)
+sky_horizon_color = Color(0.505856, 0.681402, 0.663248, 1)
+ground_bottom_color = Color(0.0234235, 0.201297, 0.213763, 1)
+ground_horizon_color = Color(0.505856, 0.681402, 0.663248, 1)
+
+[sub_resource type="Sky" id="Sky_eo5kg"]
+sky_material = SubResource("ProceduralSkyMaterial_phgsi")
+
+[sub_resource type="Environment" id="Environment_3tito"]
+background_mode = 2
+sky = SubResource("Sky_eo5kg")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvfb0"]
+
+[node name="Scratch2" type="Node3D"]
+script = ExtResource("1_swg8x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3tito")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+visible = false
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -1)
+texture_filter = 5
+modulate = Color(0.964469, 0.278584, 0, 1)
+text = "Good article, both in spirit and factually.
+
+One thing to add: the author talks about reviving a system as “slow and difficult process”, and it is. However, the concrete example described is not worthy of hand-wringing of this kind: a system that could have been built by a single competent engineer in 6 months (inevitably of alpha quality, at best), could be resurrected by a competent team of several programmers and brought to, say, beta quality, while keeping the lights on their alpha system on in how long? Let’s say, 9-12 months. No biggie, really.
+
+Most companies routinely discard man-years of programmer’s effort, so those 9-12 months are likely just a blip in the lifetime of that firm."
+outline_size = 5
+vertical_alignment = 0
+line_spacing = 10.28
+autowrap_mode = 2
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.0652073, 0, 0, -2)
+visible = false
+mesh = SubResource("BoxMesh_lvfb0")

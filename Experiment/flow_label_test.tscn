@@ -1,0 +1,536 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5jih7kjk7si1"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_ubbnl"]
+script/source = "using Godot;
+using System;
+
+public partial class FlowLabelTest : Control
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+
+		var container = GetNode(\"%FlowContainer\") as FlowContainer;
+		var label = container.GetChild(0) as Label;
+		label.GuiInput += _on_label_gui_input;
+		label.MouseEntered += () => GD.Print(\"huh\");
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+
+	public void _on_label_gui_input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton e && e.Pressed)
+		{
+		}
+	}
+}
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8jym"]
+font_size = 23
+font_color = Color(1, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FlowLabelTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("CSharpScript_ubbnl")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 1.0
+offset_right = -422.0
+offset_bottom = -396.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "testing "
+label_settings = SubResource("LabelSettings_y8jym")
+
+[node name="Label2" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label56" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label57" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label58" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label59" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label60" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label61" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label62" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label63" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label64" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label65" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label66" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label67" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label68" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label69" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label70" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label71" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label72" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label73" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label74" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label75" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label76" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label77" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label78" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label79" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label80" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label81" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label82" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label83" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label84" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label85" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label86" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label87" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label88" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label89" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label90" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label91" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label92" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label93" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label94" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label95" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label96" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label97" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label98" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label99" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label100" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label101" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label102" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label103" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label104" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label105" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label106" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label107" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label108" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label109" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label110" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label111" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label112" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label113" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label114" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label115" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label116" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label117" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label3" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label4" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label5" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label6" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label7" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label8" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label9" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label10" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label11" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label12" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label13" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label14" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label15" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label16" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label17" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label18" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label19" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label20" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label21" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label22" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label23" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label24" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label25" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label26" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label27" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label28" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label29" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label30" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label31" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label32" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label33" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label34" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label35" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label36" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label37" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label38" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label39" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label40" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label41" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label42" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label43" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label44" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label45" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label46" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label47" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label48" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label49" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label50" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label51" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label52" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label53" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label54" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"
+
+[node name="Label55" type="Label" parent="ScrollContainer/FlowContainer"]
+layout_mode = 2
+text = "testing"

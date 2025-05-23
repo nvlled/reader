@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqu72ky85ag3"]
 
-[ext_resource type="Script" path="res://StorageItem.cs" id="1_bad52"]
+[ext_resource type="Script" uid="uid://dy51ue805v1y1" path="res://Experiment/StorageItem.cs" id="1_bad52"]
 
 [node name="StorageItem" type="MarginContainer"]
 layout_direction = 2

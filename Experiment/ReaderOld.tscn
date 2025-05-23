@@ -1,0 +1,250 @@
+[gd_scene load_steps=9 format=3 uid="uid://2x7gx74t6de3"]
+
+[ext_resource type="Script" uid="uid://drlj10tdha6c0" path="res://Experiment/ReaderOld.cs" id="1_rim6b"]
+[ext_resource type="FontFile" uid="uid://b7qcb68dsssv3" path="res://Assets/RobotoMono-Regular.ttf" id="2_f161q"]
+[ext_resource type="Texture2D" uid="uid://wx2uevh3x45r" path="res://Assets/paste-svgrepo-com.png" id="3_rn06i"]
+[ext_resource type="PackedScene" uid="uid://bgyu5ktewoy6x" path="res://Experiment/StorageWindow.tscn" id="4_b6xl6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yb626"]
+font_color = Color(0, 0.257136, 0.292969, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_768y1"]
+font_size = 50
+font_color = Color(0, 0.260593, 0.480469, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x72a5"]
+font_size = 50
+font_color = Color(0.273438, 0.0351906, 0, 1)
+
+[sub_resource type="Theme" id="Theme_uw271"]
+default_font = ExtResource("2_f161q")
+
+[node name="Reader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rim6b")
+batchSize = 35
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.126422, 0.230469, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.006
+anchor_right = 1.016
+anchor_bottom = 0.997
+offset_left = -422.0
+offset_top = 0.112
+offset_right = -12.8
+offset_bottom = -0.0560303
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+scroll_vertical = 100
+vertical_scroll_mode = 3
+
+[node name="WholeText" type="Label" parent="MarginContainer2/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Abilities and Multiple Intelligences
+What is mental ability? How would you characterize someone who is mentally able? A moment of reflection tells us that there are lots of tasks for which we use our minds, and most of us are good at some of them and not so good at others. In other words, we have to talk about mental abilities, not mental ability.We’ve all known people who seemed gifted with words but could barely handle the math necessary to balance a checkbook, or who could pick out a tune on any musical instrument but seemed to fall all over themselves when attempting anything athletic.
+ 
+The logic underlying the idea of mental ability is as follows: if there is a single ability—call it intelligence, if you like—underlying different mental activities, then someone who is good at one type of mental activity (for example, math) should be good at all mental activities. But if some people are good at one mental activity (math) and poor at another (reading comprehension), then those activities must be supported by different mental processes. For more than one hundred years, psychologists have been using this logic to investigate the structure of thought. In a typical study, an experimenter takes one hundred people and administers to each of them, say, an algebra test, a geometry test, a grammar test, a vocabulary test, and a reading comprehension test. What we would expect to happen is that each person’s scores on the English tests (grammar, vocabulary, and reading comprehension) would hang together—that is, if a person scored well on one of the English tests it would mean he was good at English, so he would tend also to score well on the other English tests. Likewise, people who scored well on one math test would probably score well on the other math test, reflecting high math ability. But the scores on the math and English tests wouldn’t be so highly related. If you did this experiment, that’s more or less what you’d see.‡
+ 
+This sounds like pretty obvious stuff.When I was in graduate school, one of my professors called commonsense findings “bubbe psychology.” Bubbe is Yiddish for “grandmother,” so bubbe psychology is giving fancy labels to stuff that your grandmother could have told you (Figure 6). As far as we’ve gone, it is pretty obvious stuff. It can get a lot more complicated when we try to get more detailed (and the statistical techniques are pretty complex). But roughly speaking, what you noticed in school is true: some kids are talented at math, some are musical, and some are athletic, and they are not necessarily the same kids.
+Educators got much more interested in this type of research in the mid-1980s when Howard Gardner, a professor at Harvard, published his theory of multiple intelligences. Gardner proposed that there are seven intelligences, to which he later added an eighth. They are listed in Table 2 (on p. 124).
+ 
+As I’ve mentioned, Gardner was certainly not the first to generate a list of human abilities, and his list does not look radically different from the ones others have described. In fact, most psychologists think Gardner didn’t really get it right. He discounted a lot of the work that came before his, for reasons that researchers have thought were not justified, and he made some claims that were known at the time to be wrong—for example, that the intelligences were relatively independent of one another, which he later deemphasized.
+ 
+Educators were (and are) interested not so much in the particulars of the theory but in three claims associated with the theory:
+ 
+Claim 1: The list in Table 2 is one of intelligences, not abilities or talents.
+Claim 2: All eight intelligences should be taught in school.
+Claim 3: Many or even all of the intelligences should be used as conduits when presenting new material. That way each student will experience the material via his or her best intelligence, and thus each student’s understanding will be maximized.
+ 
+FIGURE 6: The author’s bubbe, who, like most grandmothers, knew a lot of psychology.
+
+Gardner made the first of these claims, and it is an interesting, debatable point. The other two points have been made by others on the basis of Gardner’s work, and Gardner disagrees with them. I’ll describe why each claim is interesting, and try to evaluate what it might mean for teachers.
+ 
+Let’s start with Claim 1, that the list shown in Table 2 represents intelligences, not abilities or talents. Gardner has written extensively on this point. He argues that some abilities—namely, logical-mathematical and linguistic—have been accorded greater status than they deserve.Why should those abilities get the special designation “intelligence” whereas the others get the apparently less glamorous title “talent”? Indeed, insisting that musical ability should be called musical intelligence, for example, carries a good share of the theory’s appeal. Gardner himself has commented more than once that if he had referred to seven talents instead of seven intelligences, the theory would not have received much attention.
+ 
+So? Are they intelligences or talents? On the one hand, the cognitive scientist in me agrees with Gardner.The mind has many abilities, and there is not an obvious reason to separate two of them and call them “intelligence” while referring to other mental processes by another label. On the other hand, the term intelligence has an entrenched meaning, at least in the West, and it’s unwise to suppose that a sudden switch of the meaning will not have any fallout. I believe that confusion over Gardner’s definition versus the old definitions of intelligence helps to explain why other people have made the other two claims—the ones with which Gardner disagrees.
+TABLE 2: Gardner’s eight intelligences.
+
+ 
+Claim 2 is that all eight intelligences should be taught in school.The argument for this claim is that schools should be places where the intelligences of all children are celebrated. If a student is high in intrapersonal intelligence, that intelligence should be nourished and developed, and the student should not be made to feel inferior if he is lower in linguistic and logical-mathematical intelligences, the ones that are usually heavily weighted in school curricula.There is a surface plausibility to this claim. It appeals to our sense of fairness; all intelligences should be on the same footing.
+ 
+Gardner disagrees, however, saying that curricular decisions should be made first on the basis of the values of the community, and that his multiple intelligences theory can help guide the implementation of the curricular goals.
+ 
+The claim that all intelligences should be taught in school is, I believe, a reflection of relabeling talents as intelligences. Part of our understanding of intelligence is that intelligent people do well in school.§ As a result of this assumption, some people’s thinking, I believe, has gone this way:
+ 
+Children go to school to develop their native intelligence. A new intelligence has been discovered. Therefore, schools should develop the new intelligence.
+ 
+Some educators do seem to think that Gardner “discovered” that people have musical intelligence, spatial intelligence, and so forth whereas musical intelligence is of course the same thing your bubbe would have recognized as musical talent. I personally believe that music should be part of school curricula, but the idea that cognitive scientists could tell you anything to support that position is wrong.
+The third claim states that it is useful to introduce new ideas through multiple intelligence avenues; for example, when students are learning how to use commas, they might write a song about commas (musical intelligence), search the woods for creatures and plants in the shape of a comma (naturalist intelligence), and create sentences with their bodies, assuming different postures for different parts of speech (bodily-kinesthetic intelligence). 2 The expectation is that different children will come to understand the comma by different means, depending on their intelligence.The idea will click for the student who is high in naturalist intelligence during the search-the-woods exercise, and so on.
+ 
+Gardner disavows this idea, and he’s right to do so.The different abilities (or intelligences, if you like) are not interchangeable. Mathematical concepts have to be learned mathematically, and skill in music won’t help.¶ Writing a poem about the arc that a golf club should take will not help your swing.These abilities are not completely insulated from one another, but they are separate enough that you can’t take one skill you’re good at and leverage it to bolster a weakness.
+ 
+Some people have suggested that we might at least be able to get students interested in subject matter by appealing to their strength.To get the science whiz reading for pleasure, don’t hand him a book of Emily Dickinson’s poetry; give him the memoirs of physicist Richard Feynman. I think that’s a sensible idea, if not terribly startling. I also think it will only take you so far. It’s a lot like trying to appeal to students’ individual interests, a point I took up in Chapter One."
+label_settings = SubResource("LabelSettings_yb626")
+autowrap_mode = 2
+
+[node name="InactiveTextPreview" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -161.0
+offset_top = 207.0
+offset_right = 139.0
+offset_bottom = 276.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "inactive text"
+label_settings = SubResource("LabelSettings_768y1")
+
+[node name="TextSizeCompute" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_x72a5")
+
+[node name="AutoPasteTimer" type="Timer" parent="."]
+wait_time = 0.408
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -34.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextDisplay" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "some text [color=red]here[/color]"
+fit_content = true
+autowrap_mode = 2
+tab_size = 2
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_uw271")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 1
+
+[node name="ButtonStart" type="Button" parent="Interface/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+text = "⇤"
+
+[node name="Separator" type="Label" parent="Interface/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ButtonPrev" type="Button" parent="Interface/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+text = "←"
+
+[node name="ProgressText" type="Label" parent="Interface/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.618385, 0.85441, 1, 1)
+text = "1/10"
+horizontal_alignment = 1
+
+[node name="ButtonNext" type="Button" parent="Interface/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+text = "→"
+
+[node name="Separator2" type="Label" parent="Interface/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ButtonEnd" type="Button" parent="Interface/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+text = "⇥"
+
+[node name="ShowHistoryButton" type="TextureButton" parent="Interface"]
+unique_name_in_owner = true
+modulate = Color(0.863431, 1, 0.78676, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -37.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_rn06i")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StorageWindow" parent="." instance=ExtResource("4_b6xl6")]
+visible = false
